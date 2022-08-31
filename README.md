@@ -135,6 +135,22 @@ SEQUENCE中的NUM_CHAR修改为加入汉字后的字典元素总个数
 
 在class DatasetCatalog 中的DATASETS中仿照ic13加入chinese dataset的目录设置
 
+## 只训练检测模型，不需要识别部分，修改步骤如下
+1.修改predictor
+ROI_MASK_HEAD.PREDICTOR=MaskRCNN4Predictor
+使用MaskRcnn作为预测器
+
+2.修改POOLER_RESOLUTION
+ROI_MASK_HEAD.POOLER_RESOLUTION_W=14
+ROI_MASK_HEAD.POOLER_RESOLUTION_H=14
+保证mask和输入的尺寸一致
+
+3.CHAR_MASK_ON=False
+该设置用来分割字符
+
+4.SEQ_ON=False
+该设置用来进行字符识别
+
 ## Evaluation
 ### Download lexicons
 [Google Drive](https://drive.google.com/file/d/15PAG-ok8KtJjNxP-pOp7kX_esjCpfzn5/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1kXGaF9jev1ysQhTOBbIDDg) (
