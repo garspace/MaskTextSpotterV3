@@ -114,6 +114,27 @@ check the initial weights in the config file.
 
 ```python3 -m torch.distributed.launch --nproc_per_node=8 tools/train_net.py --config-file configs/mixtrain/seg_rec_poly_fuse_feature.yaml ```
 
+## 训练自己的中文数据集
+在原作者代码的基础上为了训练自己的中文数据集做的改动
+
+①在datasets目录下创建chinese数据集目录，类型格式参照ic13/15
+
+train_gts
+train_images
+test_images
+​ gt格式: 13, 338, 258, 320, 264, 408, 19, 426,耻辱不亚于,19, 388, 68, 387, 68, 422, 19, 425,耻,70, 336, 121, 335, 121, 379, 70, 381,辱,123, 330, 167, 328, 168, 363, 123, 364,不,170, 338, 215, 337, 216, 369, 170, 370,亚,222, 371, 262, 369, 262, 409, 222, 410,于
+
+②修改configs目录下的yaml文件
+
+ROI_MASK_HEAD下的PREDICTOR修改为“SeqMaskRCNNC4Predictor”
+ROI_MASK_HEAD下的CHAR_NUM_CLASSES修改为加入汉字后的字典元素总个数
+DATASETS中加入chinese_train
+SOLVER中的BASE_LR设为0.002
+SEQUENCE中的NUM_CHAR修改为加入汉字后的字典元素总个数
+③修改maskrcnn_benchmark/config/paths_catalog.py
+
+在class DatasetCatalog 中的DATASETS中仿照ic13加入chinese dataset的目录设置
+
 ## Evaluation
 ### Download lexicons
 [Google Drive](https://drive.google.com/file/d/15PAG-ok8KtJjNxP-pOp7kX_esjCpfzn5/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1kXGaF9jev1ysQhTOBbIDDg) (
