@@ -152,6 +152,9 @@ ROI_MASK_HEAD.POOLER_RESOLUTION_H=14
 4.SEQ_ON=False
 该设置用来进行字符识别
 
+仅训练检测模型：
+python -m torch.distributed.launch  tools/train_net.py --config configs/mixtrain/only_detect_config.yaml
+
 ## Evaluation
 ### Download lexicons
 [Google Drive](https://drive.google.com/file/d/15PAG-ok8KtJjNxP-pOp7kX_esjCpfzn5/view?usp=sharing), [Baidu Drive](https://pan.baidu.com/s/1kXGaF9jev1ysQhTOBbIDDg) (
