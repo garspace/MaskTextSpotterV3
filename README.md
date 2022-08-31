@@ -56,6 +56,10 @@ This project is under a lincense of Creative Commons Attribution-NonCommercial 4
   git clone https://github.com/MhLiao/MaskTextSpotterV3.git
   cd MaskTextSpotterV3
 
+  # build 可能遇到的问题
+   将maskrcnn_benchmark/csrc/cuda/deform_conv_cuda.cu和maskrcnn_benchmark/csrc/cuda/deform_pool_cuda.cu中的
+   AT_CHECK 替换为 TORCH_CHECK
+
   # build
   python setup.py build develop
 
