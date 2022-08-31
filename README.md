@@ -129,9 +129,9 @@ test_images
 ROI_MASK_HEAD下的PREDICTOR修改为“SeqMaskRCNNC4Predictor”
 ROI_MASK_HEAD下的CHAR_NUM_CLASSES修改为加入汉字后的字典元素总个数
 DATASETS中加入chinese_train
-SOLVER中的BASE_LR设为0.002
-SEQUENCE中的NUM_CHAR修改为加入汉字后的字典元素总个数
-③修改maskrcnn_benchmark/config/paths_catalog.py
+SOLVER中的BASE_LR设为0.002 
+SEQUENCE中的NUM_CHAR修改为加入汉字后的字典元素总个数  
+③修改maskrcnn_benchmark/config/paths_catalog.py 
 
 在class DatasetCatalog 中的DATASETS中仿照ic13加入chinese dataset的目录设置
 
@@ -142,6 +142,7 @@ ROI_MASK_HEAD.PREDICTOR=MaskRCNN4Predictor
 
 2.修改POOLER_RESOLUTION
 ROI_MASK_HEAD.POOLER_RESOLUTION_W=14
+
 ROI_MASK_HEAD.POOLER_RESOLUTION_H=14
 保证mask和输入的尺寸一致
 
